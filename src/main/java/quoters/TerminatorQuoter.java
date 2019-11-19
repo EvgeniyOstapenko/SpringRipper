@@ -23,7 +23,10 @@ public class TerminatorQuoter implements Quoter {
         System.out.println("Phase 1");
     }
 
+    @Override
+    @PostProxy
     public void sayQuote() {
+        System.out.println("Third phase");
         for (int i = 0; i < repeat; i++) {
             System.out.println(message);
         }

@@ -4,7 +4,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
@@ -32,7 +31,7 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(final Object bean, String beanName) throws BeansException {
         Class beanClass = map.get(beanName);
         if (beanClass != null) {
             return Proxy.newProxyInstance(beanClass.getClassLoader(), beanClass.getInterfaces(), new InvocationHandler() {
